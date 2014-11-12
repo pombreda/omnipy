@@ -8,7 +8,7 @@ DPI log format:
 __author__ = 'chenxm'
 
 import csv
-from reader import LogEntry, LogReader
+from _reader import LogEntry, LogReader
 
 
 _DPI_FIELDS = [

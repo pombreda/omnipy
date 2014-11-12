@@ -8,7 +8,7 @@ Justniffer log example (two entries):
 __author__ = 'chenxm'
 
 import sys, csv
-from reader import LogEntry, LogReader
+from _reader import LogEntry, LogReader
 from omnipy.utils.url import URL
 
 

@@ -15,7 +15,7 @@ import os, sys
 import re
 from time import strptime, mktime, clock
 
-from reader import FileReader
+from _reader import FileReader
 
 
 class ApEntry(object):
