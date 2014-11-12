@@ -1,25 +1,24 @@
-PyOmniMisc
+omnipy
 ==========
 
 Useful python modules in Omnilab traffic log processing.
-This package aims to facilitate further data processing of omnilab-misc project.
 
 
 How To Install
 ----------
 
-    $ pip install -U PyOmniMisc
+    $ pip install -U omnipy
     
 or
 
-    $ easy_install -U PyOmniMisc
+    $ easy_install -U omnipy
     
-Maybe `sudo` privilege is required when the system does not premit installing.
+Maybe `sudo` privilege is required when the system does not permit installing.
 
 
 Contact
 -----------
 
-Jamin Chen
+Xiaming Chen
 
 chenxm35@gmail.com
