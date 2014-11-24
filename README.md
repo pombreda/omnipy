@@ -1,6 +1,8 @@
 omnipy
 ==========
 
+[![Build Status](https://travis-ci.org/caesar0301/omnipy.svg)](https://travis-ci.org/caesar0301/omnipy)
+
 Useful python modules in Omnilab traffic log processing.
 
 
