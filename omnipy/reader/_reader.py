@@ -4,10 +4,10 @@ The basic module about log readers
 import os
 import re
 
-import omnipy.utils.gzip_mod as gzip_mod
+from ..utils.gzip2 import GzipFile
 
 __author__ = 'chenxm'
-
+__all__ = ["FileReader"]
 
 class FileReader(object):
 
@@ -19,7 +19,7 @@ class FileReader(object):
 		parts = os.path.basename(filename).split('.')
 		try:
 			assert parts[-1] == 'gz'
-			fh = gzip_mod.GzipFile(mode=mode, filename = filename)
+			fh = GzipFile(mode=mode, filename = filename)
 		except:
 			fh = open(filename, mode)
 		return fh

@@ -1,20 +1,19 @@
 #!/usr/bin/env python
 # The Activity-Entity model for mobile HTTP records
-#
-# By chenxm
-#
 import zlib
 
-from webtree import WebTree, WebNode
-
 from tldextract import TLDExtract
-from omnipy.data.reader.http import HTTPLogEntry
-from omnipy.utils.url import URL
+
+from .webtree import WebTree, WebNode
+from ..reader import HTTPLogEntry
+from ..utils import URL
+
+__author__ = "chenxm"
+__all__ = ["AEM"]
 
 
 def _crc32(string):
     return zlib.crc32(string) & 0xffffffff
-
 
 def _format_entity(e):
     ''' Format the entity in a readable way
@@ -308,35 +307,3 @@ class AEM(object):
                 wts.append(nt)
             last = nn
         return wts
-
-
-
-if __name__ == '__main__':
-    from PyOmniMisc.traffic.http import HTTPLogReader
-    
-    es = []
-    for e in HTTPLogReader('../test/http_logs'):
-        if e is not None: es.append(e)
-
-    e1 = es[1]
-    e2 = es[2]
-    print _overlap(e1,e2)
-    print _head_diff(e1, e2)
-    print _tail_diff(e1, e2)
-    print _domain1st(e1.url())
-
-    aem  = AEM(es)
-    print 'conj:', aem._is_conj(e1, e2)
-    print 'parr:', aem._is_parallel(e1, e2)
-    print 'rely:', aem._is_relayed(e1, e2)
-    print 'serl:', aem._is_serial(e1, e2)
-    
-    for ua in aem._ss:
-        ss = aem._ss[ua]
-        print '\n******************'
-        print ua
-        for el in ss[1:]:
-            trees = aem.model(el)
-            for wt in trees:
-                print('')
-                wt.show(key=lambda x: x.pl.rqtstart(), reverse=False)

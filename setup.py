@@ -8,17 +8,12 @@ setup(
     name = "omnipy",
     version = __version__,
     url = 'https://github.com/caesar0301/omnipy',
-
     author = 'X. Chen',
     author_email = 'chenxm35@gmail.com',
-
     packages = find_packages(),
-    install_requires = ['treelib', 'tldextract'],
-    package_data = {
-        '': ['*.csv']
-    },
-
-    description = 'My misc python library kit in daily data processing.',
+    install_requires = ['treelib', 'tldextract', 'pyyaml'],
+    data_files = [('', ['omnipy/db/intds.yaml', 'omnipy/db/ndpi-proto.csv'])],
+    description = 'My misc python library in daily data processing.',
     license = "GPLv3",
     classifiers = [
         'Development Status :: 4 - Beta',

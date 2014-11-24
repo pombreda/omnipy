@@ -1,8 +1,10 @@
-__author__ = 'chenxm'
-
 from treelib import Tree, Node
-from omnipy.data.reader.http import HTTPLogEntry
-from omnipy.utils.url import URL
+
+from ..reader import HTTPLogEntry
+from ..utils import URL
+
+__author__ = 'chenxm'
+__all__ = ["WebNode", "WebTree"]
 
 
 class WebNode(Node):
@@ -18,7 +20,7 @@ class WebNode(Node):
 		self.tag = self.gen_tag() # formated tag to show by tree
 
 	def gen_tag(self):
-		# Set readable node tag		
+		# Set readable node tag
 		ntag = "%s (%s/%s) | %s | %s | %s | %s | %s | %s" % (
 			self.pl.rqtstart(),
 			self.aem_pred,
@@ -36,7 +38,6 @@ class WebTree(Tree):
 
 	def __init__(self, tree=None):
 		Tree.__init__(self, tree)
-
 
 	def sorted_nodes(self):
 		""" get a list of nodes ordered by request time
@@ -104,7 +105,7 @@ class WebTree(Tree):
 						linked_flag = True
 						break
 
-			# After all the trees are checked:	
+			# After all the trees are checked:
 			if not linked_flag:
 				nt = WebTree()
 				if nn_ref != None:

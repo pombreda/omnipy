@@ -1,6 +1,9 @@
-__author__ = 'chenxm'
-
 import math
+
+
+__author__ = 'chenxm'
+__all__ = ["FMeasure", "FMeasureBeta", "MSE", "RMSE"]
+
 
 def FMeasure(precision, recall):
 	""" Also known as F-one measure
@@ -29,9 +32,3 @@ def RMSE(predictions, targets):
 	""" Root of Mean Square Error
 	"""
 	return math.sqrt(MSE(predictions, targets))
-
-
-if __name__ == '__main__':
-	print FMeasure(0.5, 0.5)
-	print MSE([1,1], [1,2])
-	print RMSE([1,1], [1,2])

@@ -4,23 +4,24 @@ About this module:
 This module aims to parse and store association information extracted
 from Aruba Wifi syslog, and provides APIs for external calls.
 
-External program can call to get association information among times, 
+External program can call to get association information among times,
 device MACs, IP addresses, and AP entries.
 
 For details, please refer to README in the root folder.
 """
-__author__ = 'chenxm'
-
 import os, sys
 import re
 from time import strptime, mktime, clock
 
-from _reader import FileReader
+from ._reader import FileReader
+
+__author__ = 'chenxm'
+__all__ = ["LocationDB"]
 
 
 class ApEntry(object):
     """
-    Class of AP record entry, containing AP name, 
+    Class of AP record entry, containing AP name,
     association start time, and association endtime;
     """
     name_map = {} # save memory
@@ -152,8 +153,8 @@ class LocationDB(object):
                     return (mac, apent)
             return (mac, None)
         return (None, None)
-    
-    
+
+
     def dumpDB(self, filepath):
         """
         Serialize inner database and maintain it in persistent storage.
@@ -181,8 +182,8 @@ class LocationDB(object):
         self._mac_ap_db = d['MacApDatabase']
         d.close
         print("Loaded in %.3fs" % (clock()-start))
-        
-        
+
+
     def save2file(self, filepath):
         """
         Dump the inner database into plain text file.
@@ -235,7 +236,7 @@ class LocationDB(object):
                     newent.mac = user_mac
                     newent.atime = mktime(strptime(time_str, TIME_FORMAT))
                     newent.rtime = newent.atime
-                    
+
                     added = False
                     for ipent in self._ip_mac_db[ip_str][::-1]: # revsersed order
                         if ipent.mac == newent.mac:
@@ -283,7 +284,3 @@ class LocationDB(object):
                     if user_mac not in self._mac_ap_db:
                         self._mac_ap_db[user_mac] = []
                     self._mac_ap_db[user_mac].append(ap_entry)
-
-
-if __name__ == '__main__':
-    pass

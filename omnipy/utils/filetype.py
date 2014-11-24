@@ -1,4 +1,5 @@
 __author__ = 'chenxm'
+__all__ = ["FileType"]
 
 
 class FileType(object):
@@ -38,14 +39,12 @@ class FileType(object):
 		for ftype in db[key]:
 			dbr[ftype] = key
 
-
 	@classmethod
 	def detect_by_filename(cls, filename):
 		chops = filename.rsplit('.', 1)
 		if len(chops) < 2: return None
 		suffix = chops[1]
 		return FileType.dbr.get(suffix)
-
 
 	def _read_filetypes(self):
 		"""
@@ -58,8 +57,3 @@ class FileType(object):
 				content = open(os.path.join(root, category)).readlines()
 				db[category] = [line.strip('\r\n ') for line in content if line.strip('\r\n ')!='']
 		print db
-
-
-
-if __name__ == '__main__':
-	print FileType.detect_by_filename("hao123.com/a.html")

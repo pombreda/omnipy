@@ -1,7 +1,7 @@
-__author__ = 'chenxm'
-
 import re
 
+__author__ = 'chenxm'
+__all__ = ["URL"]
 
 class URL(object):
 
@@ -26,7 +26,6 @@ class URL(object):
 		if url_match:
 			url = url_match.group(1)
 		return url
-	
 
 	@staticmethod
 	def search(t, urls):
@@ -35,7 +34,6 @@ class URL(object):
 			if trul2 == URL.strip_proto(url):
 				return True
 		return False
-
 
 	@staticmethod
 	def cmp(u1, u2, mode = M_STRICT):
@@ -51,14 +49,3 @@ class URL(object):
 			if u1 == u2:
 				return True
 			return False
-			
-
-if __name__ == '__main__':
-	url1 = 'http://www.baidu.com/hello?123'
-	url2 = 'http://www.baidu.com/hello?456'
-
-	print URL.strip_proto(url1)
-	print URL.strip_param(url1)
-	print URL.search(url1, [url1, url2])
-	print URL.cmp(url1, url2, URL.M_STRICT)
-	print URL.cmp(url1, url2, URL.M_LOOSE)

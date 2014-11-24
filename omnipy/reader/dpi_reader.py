@@ -8,7 +8,11 @@ DPI log format:
 __author__ = 'chenxm'
 
 import csv
-from _reader import LogEntry, LogReader
+
+from ._reader import LogEntry, LogReader
+
+
+__all__ = ["DPILogReader", "DPIMap", "DPILogEntry"]
 
 
 _DPI_FIELDS = [
@@ -89,14 +93,16 @@ class _appNote(object):
         self.cat = cat
 
 
-class DPIAppMap(object):
+class DPIMap(object):
     '''
     Utility to transform between protocol name, ID and categories.
     '''
     def __init__(self):
         i = 0
         self._cat_db = []
-        for line in open('ndpi-proto.csv', 'rb'):
+        this_dir, this_file = os.path.split(__file__)
+        protofile = os.path.join(this_dir, "..", "..", "ndpi-proto.csv")
+        for line in open(protofile, 'rb'):
             if i != 0:
                 line = line.strip('\r\n ')
                 if len(line) == 0:
@@ -135,7 +141,7 @@ class DPIAppMap(object):
 
 
 if __name__ == '__main__':
-    appcat = DPIAppMap()
+    appcat = DPIMap()
     print appcat.protoName(0)
     print appcat.protoCat(0)
     print appcat.protoIDs("IM")
