@@ -1,3 +1,6 @@
+import os
+import tldextract
+
 __author__ = 'chenxm'
 __all__ = ["IDS"]
 
@@ -23,7 +26,6 @@ class IDS(object):
                 'country': info}
 
     def host_info(self, url):
-        import tldextract
         tld = tldextract.extract(url)
         subdomain = tld.subdomain
         domain = tld.domain

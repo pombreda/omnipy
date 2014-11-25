@@ -9,14 +9,11 @@ def test_aem():
     for e in HTTPLogReader(testlog):
         if e is not None:
             es.append(e)
+    if len(es) < 2:
+    	return
 
     e1 = es[1]
     e2 = es[2]
-    print _overlap(e1,e2)
-    print _head_diff(e1, e2)
-    print _tail_diff(e1, e2)
-    print _domain1st(e1.url())
-
     aem  = AEM(es)
     print 'conj:', aem._is_conj(e1, e2)
     print 'parr:', aem._is_parallel(e1, e2)

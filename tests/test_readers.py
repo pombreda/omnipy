@@ -1,3 +1,5 @@
+import os
+
 from omnipy.reader import DPIMap
 from omnipy.reader import HTTPLogEntry, HTTPLogReader
 from omnipy.reader import TCPLogEntry
@@ -13,7 +15,8 @@ def test_dpi_map():
 def test_http_reader():
     for f in HTTPLogEntry.all():
         print f
-    reader = HTTPLogReader('../../test/http_logs')
+    this_dir, this_file = os.path.split(__file__)
+    reader = HTTPLogReader(os.path.join(this_dir, 'http_logs'))
     for e in reader:
         print e.url()
         print e.host()
