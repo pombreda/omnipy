@@ -1,5 +1,3 @@
-import os
-import sys
 from setuptools import setup, find_packages
 
 from omnipy import __version__
@@ -25,5 +23,5 @@ setup(
             'Programming Language :: Python :: 2.6',
             'Programming Language :: Python :: 2.7',
             'Topic :: Software Development :: Libraries :: Python Modules',
-   ],
+   ]
 )
