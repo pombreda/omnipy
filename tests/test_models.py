@@ -8,7 +8,7 @@ def test_aem():
     testlog = os.path.join(this_dir, 'http_logs')
     for e in HTTPLogReader(testlog):
         if e is not None:
-        	es.append(e)
+            es.append(e)
 
     e1 = es[1]
     e2 = es[2]
